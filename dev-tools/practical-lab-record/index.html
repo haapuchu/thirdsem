@@ -8,19 +8,74 @@
   <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
+  <div id="drawer-overlay" class="drawer-overlay" aria-hidden="true"></div>
+<aside id="side-drawer" class="side-drawer" aria-label="side navigation" aria-hidden="true">
+  <div class="drawer-header">
+    <span class="drawer-title">thirdsem // menu</span>
+    <button id="drawer-close" class="drawer-close-btn" type="button" aria-label="close menu">&times;</button>
+  </div>
+  <div class="drawer-body">
+    <div class="drawer-nav-group">
+      <a class="drawer-nav-link" href="../../index.html"><strong>./ (home)</strong></a>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="../../discrete/index.html">discrete/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="../../discrete/assignments/index.html">assignments/</a>
+      </div>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="../../dld/index.html">dld/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="../../dld/assignments/index.html">assignments/</a>
+        <a class="drawer-sublink" href="../../dld/practical-lab-record/index.html">practical lab record/</a>
+      </div>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="../../ppl/index.html">ppl/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="../../ppl/assignments/index.html">assignments/</a>
+        <a class="drawer-sublink" href="../../ppl/practical-lab-record/index.html">practical lab record/</a>
+      </div>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="../../dev-tools/index.html">dev tools/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="../../dev-tools/assignments/index.html">assignments/</a>
+        <a class="drawer-sublink" href="../../dev-tools/practical-lab-record/index.html">practical lab record/</a>
+      </div>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="../../dsa/index.html">dsa/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="../../dsa/assignments/index.html">assignments/</a>
+        <a class="drawer-sublink" href="../../dsa/practical-lab-record/index.html">practical lab record/</a>
+      </div>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="../../feedback-control-systems/index.html">feedback control systems/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="../../feedback-control-systems/assignments/index.html">assignments/</a>
+      </div>
+    </div>
+  </div>
+</aside>
   <div class="container">
     <header>
+      <div class="you-are-here"><span class="yah-label">you are here:</span> <span class="yah-path"><a href="../../index.html">./</a> <span class="yah-sep">/</span> <a href="../index.html">dev tools</a> <span class="yah-sep">/</span> <span class="yah-current">practical lab record</span></span></div>
       <div class="header-top">
-        <div class="breadcrumbs">
-          <a href="../../index.html">home</a>
-          <span class="sep">/</span>
-          <a href="../index.html">dev tools</a>
-          <span class="sep">/</span>
-          <span class="current">practical lab record</span>
+        <h1 class="site-title">dev tools // practical lab record</h1>
+        <div class="header-controls">
+          <button id="menu-toggle" class="header-btn menu-btn" type="button" aria-label="toggle menu" aria-expanded="false">&equiv; menu</button>
+          <button id="theme-toggle" class="header-btn theme-btn" type="button" aria-label="toggle theme">theme</button>
         </div>
-        <button id="theme-toggle" class="theme-btn" type="button" aria-label="toggle theme">theme</button>
       </div>
-      <h1 class="site-title">dev tools // practical lab record</h1>
     </header>
 
     <nav class="quick-nav">
@@ -29,22 +84,21 @@
 
     <div class="notice-box">
       <p><strong>course:</strong> cs2303 &ndash; development tools laboratory</p>
-      <p><strong>experiments 1&ndash;5:</strong> all print and attach.</p>
-      <p><strong>experiments 6 &amp; 7:</strong> handwrite the source code, and attach/paste the output from the outputs pdf.</p>
+      <p><strong>instructions:</strong> for exp 1 to 5, all print and attach; for exp 6 & 7, handwrite the code and paste the outputs from the outputs pdf.</p>
     </div>
 
     <main>
       <!-- Cover Page -->
       <section class="section-block">
-        <h2 class="section-title">cover page &ndash; development tools laboratory</h2>
+        <h2 class="section-title">cover page &ndash; dev tools practical laboratory</h2>
         <div class="pdf-container">
   <div class="pdf-toolbar">
-    <div><strong>cover_CS2303_Development_Tools_Laboratory_Practical.pdf</strong></div>
+    <div><strong>cover_CS2303_Development_Tools_Practical.pdf</strong></div>
     <div>
       <a href="../../assets/pdfs/dev-tools/cover_practical.pdf" target="_blank" rel="noopener noreferrer" class="pdf-btn">open pdf / download</a>
     </div>
   </div>
-  <iframe src="../../assets/pdfs/dev-tools/cover_practical.pdf" class="pdf-viewer-frame" title="cover_CS2303_Development_Tools_Laboratory_Practical.pdf">
+  <iframe src="../../assets/pdfs/dev-tools/cover_practical.pdf" class="pdf-viewer-frame" title="cover_CS2303_Development_Tools_Practical.pdf">
     <p><a href="../../assets/pdfs/dev-tools/cover_practical.pdf" target="_blank">open pdf</a></p>
   </iframe>
   <p class="mobile-fallback-note">mobile: tap "open pdf / download" above if inline preview does not scroll.</p>
@@ -55,36 +109,36 @@
       <section class="section-block">
         <h2 class="section-title">experiment list & dates</h2>
         <ul class="action-list">
-          <li><strong>experiment 1:</strong> technical report &bull; date: 02 september 2026</li>
-          <li><strong>experiment 2:</strong> mathematical symbols, operators and equations &bull; date: 16 september 2026</li>
-          <li><strong>experiment 3:</strong> creating a table with caption and label &bull; date: 16 october 2026</li>
-          <li><strong>experiment 4:</strong> side-by-side figures using subfigures &bull; date: 16 october 2026</li>
-          <li><strong>experiment 5:</strong> citations and references in latex &bull; date: 16 october 2026</li>
-          <li><strong>experiment 6:</strong> date: 21 november 2026</li>
-          <li><strong>experiment 7:</strong> date: 21 november 2026</li>
+          <li><strong>experiment 1:</strong> technical report &bull; date: 02 september 2026 (print and attach)</li>
+          <li><strong>experiment 2:</strong> mathematical symbols, operators and equations &bull; date: 16 september 2026 (print and attach)</li>
+          <li><strong>experiment 3:</strong> creating a table with caption and label &bull; date: 16 october 2026 (print and attach)</li>
+          <li><strong>experiment 4:</strong> side-by-side figures using subfigures &bull; date: 16 october 2026 (print and attach)</li>
+          <li><strong>experiment 5:</strong> citations and references in latex &bull; date: 16 october 2026 (print and attach)</li>
+          <li><strong>experiment 6:</strong> date: 21 november 2026 (handwrite code, paste output)</li>
+          <li><strong>experiment 7:</strong> date: 21 november 2026 (handwrite code, paste output)</li>
         </ul>
       </section>
 
-      <!-- Exp 1-5 -->
+      <!-- Experiments 1 to 5 -->
       <section class="section-block">
-        <h2 class="section-title">exp 1&ndash;5 lab copy output and code (print and attach)</h2>
+        <h2 class="section-title">experiments 1 to 5 (print and attach)</h2>
         <div class="pdf-container">
   <div class="pdf-toolbar">
-    <div><strong>adit dev tools 1 to 5 lab copy output and code.pdf</strong></div>
+    <div><strong>dev_tools_1_to_5_lab_copy_output_and_code.pdf</strong></div>
     <div>
       <a href="../../assets/pdfs/dev-tools/adit_dev_tools_1_to_5_lab_copy_output_and_code.pdf" target="_blank" rel="noopener noreferrer" class="pdf-btn">open pdf / download</a>
     </div>
   </div>
-  <iframe src="../../assets/pdfs/dev-tools/adit_dev_tools_1_to_5_lab_copy_output_and_code.pdf" class="pdf-viewer-frame" title="adit dev tools 1 to 5 lab copy output and code.pdf">
+  <iframe src="../../assets/pdfs/dev-tools/adit_dev_tools_1_to_5_lab_copy_output_and_code.pdf" class="pdf-viewer-frame" title="dev_tools_1_to_5_lab_copy_output_and_code.pdf">
     <p><a href="../../assets/pdfs/dev-tools/adit_dev_tools_1_to_5_lab_copy_output_and_code.pdf" target="_blank">open pdf</a></p>
   </iframe>
   <p class="mobile-fallback-note">mobile: tap "open pdf / download" above if inline preview does not scroll.</p>
 </div>
       </section>
 
-      <!-- Exp 6 & 7 Code -->
+      <!-- Experiment 6 & 7 Code -->
       <section class="section-block">
-        <h2 class="section-title">exp 6 &amp; 7 (handwrite code)</h2>
+        <h2 class="section-title">experiments 6 & 7 &ndash; code (handwrite code)</h2>
         <div class="pdf-container">
   <div class="pdf-toolbar">
     <div><strong>dev tools 6 7.pdf</strong></div>
@@ -99,9 +153,9 @@
 </div>
       </section>
 
-      <!-- Exp 6 & 7 Output -->
+      <!-- Experiment 6 & 7 Output -->
       <section class="section-block">
-        <h2 class="section-title">exp 6 &amp; 7 output (attach / paste outputs)</h2>
+        <h2 class="section-title">experiments 6 & 7 &ndash; output (paste output)</h2>
         <div class="pdf-container">
   <div class="pdf-toolbar">
     <div><strong>dev 6 7 output.pdf</strong></div>

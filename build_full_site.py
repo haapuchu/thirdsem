@@ -4,6 +4,85 @@ BASE_DIR = r"C:\Users\singh\.gemini\antigravity\scratch\academic-portal"
 
 THEME_INIT = "<script>(function(){const t=localStorage.getItem('theme');if(t){document.documentElement.setAttribute('data-theme',t);}})();</script>"
 
+def drawer(depth=0):
+    p = "../" * depth if depth > 0 else "./"
+    return f"""<div id="drawer-overlay" class="drawer-overlay" aria-hidden="true"></div>
+<aside id="side-drawer" class="side-drawer" aria-label="side navigation" aria-hidden="true">
+  <div class="drawer-header">
+    <span class="drawer-title">thirdsem // menu</span>
+    <button id="drawer-close" class="drawer-close-btn" type="button" aria-label="close menu">&times;</button>
+  </div>
+  <div class="drawer-body">
+    <div class="drawer-nav-group">
+      <a class="drawer-nav-link" href="{p}index.html"><strong>./ (home)</strong></a>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="{p}discrete/index.html">discrete/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="{p}discrete/assignments/index.html">assignments/</a>
+      </div>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="{p}dld/index.html">dld/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="{p}dld/assignments/index.html">assignments/</a>
+        <a class="drawer-sublink" href="{p}dld/practical-lab-record/index.html">practical lab record/</a>
+      </div>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="{p}ppl/index.html">ppl/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="{p}ppl/assignments/index.html">assignments/</a>
+        <a class="drawer-sublink" href="{p}ppl/practical-lab-record/index.html">practical lab record/</a>
+      </div>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="{p}dev-tools/index.html">dev tools/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="{p}dev-tools/assignments/index.html">assignments/</a>
+        <a class="drawer-sublink" href="{p}dev-tools/practical-lab-record/index.html">practical lab record/</a>
+      </div>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="{p}dsa/index.html">dsa/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="{p}dsa/assignments/index.html">assignments/</a>
+        <a class="drawer-sublink" href="{p}dsa/practical-lab-record/index.html">practical lab record/</a>
+      </div>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="{p}feedback-control-systems/index.html">feedback control systems/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="{p}feedback-control-systems/assignments/index.html">assignments/</a>
+      </div>
+    </div>
+  </div>
+</aside>"""
+
+def you_are_here(depth=0, items=None):
+    if depth == 0 or not items:
+        return '<div class="you-are-here"><span class="yah-label">you are here:</span> <span class="yah-path"><span class="yah-current">./</span></span></div>'
+    p = "../" * depth if depth > 0 else "./"
+    parts = [f'<a href="{p}index.html">./</a>']
+    for label, href in items:
+        if href:
+            parts.append(f'<span class="yah-sep">/</span> <a href="{href}">{label}</a>')
+        else:
+            parts.append(f'<span class="yah-sep">/</span> <span class="yah-current">{label}</span>')
+    return f'<div class="you-are-here"><span class="yah-label">you are here:</span> <span class="yah-path">{" ".join(parts)}</span></div>'
+
+def header_controls():
+    return """<div class="header-controls">
+          <button id="menu-toggle" class="header-btn menu-btn" type="button" aria-label="toggle menu" aria-expanded="false">&equiv; menu</button>
+          <button id="theme-toggle" class="header-btn theme-btn" type="button" aria-label="toggle theme">theme</button>
+        </div>"""
+
 def nav(depth=0):
     p = "../" * depth if depth > 0 else "./"
     return f"""<nav class="quick-nav">
@@ -36,9 +115,9 @@ def pdf_embed(file_rel_path, label):
   <p class="mobile-fallback-note">mobile: tap "open pdf / download" above if inline preview does not scroll.</p>
 </div>"""
 
-# ==========================================
+# -------------------------------------------------------------
 # 1. ROOT index.html
-# ==========================================
+# -------------------------------------------------------------
 INDEX_HTML = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,11 +128,13 @@ INDEX_HTML = f"""<!DOCTYPE html>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  {drawer(0)}
   <div class="container">
     <header>
+      {you_are_here(0)}
       <div class="header-top">
         <h1 class="site-title">./</h1>
-        <button id="theme-toggle" class="theme-btn" type="button" aria-label="toggle theme">theme</button>
+        {header_controls()}
       </div>
     </header>
 
@@ -197,14 +278,11 @@ INDEX_HTML = f"""<!DOCTYPE html>
 
   <script src="js/app.js"></script>
 </body>
-</html>
-"""
-with open(os.path.join(BASE_DIR, "index.html"), "w", encoding="utf-8") as f:
-    f.write(INDEX_HTML)
+</html>"""
 
-# ==========================================
-# 2. DISCRETE (only assignments)
-# ==========================================
+# -------------------------------------------------------------
+# 2. DISCRETE
+# -------------------------------------------------------------
 DISCRETE_INDEX = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -215,17 +293,14 @@ DISCRETE_INDEX = f"""<!DOCTYPE html>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+  {drawer(1)}
   <div class="container">
     <header>
+      {you_are_here(1, [('discrete', None)])}
       <div class="header-top">
-        <div class="breadcrumbs">
-          <a href="../index.html">home</a>
-          <span class="sep">/</span>
-          <span class="current">discrete</span>
-        </div>
-        <button id="theme-toggle" class="theme-btn" type="button" aria-label="toggle theme">theme</button>
+        <h1 class="site-title">discrete</h1>
+        {header_controls()}
       </div>
-      <h1 class="site-title">discrete</h1>
     </header>
 
     {nav(1)}
@@ -255,13 +330,11 @@ DISCRETE_INDEX = f"""<!DOCTYPE html>
       </div>
     </main>
 
-    {footer(1, 'discrete')}
+    {footer(1)}
   </div>
   <script src="../js/app.js"></script>
 </body>
 </html>"""
-with open(os.path.join(BASE_DIR, "discrete", "index.html"), "w", encoding="utf-8") as f:
-    f.write(DISCRETE_INDEX)
 
 DISCRETE_ASSIGN = f"""<!DOCTYPE html>
 <html lang="en">
@@ -273,19 +346,14 @@ DISCRETE_ASSIGN = f"""<!DOCTYPE html>
   <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
+  {drawer(2)}
   <div class="container">
     <header>
+      {you_are_here(2, [('discrete', '../index.html'), ('assignments', None)])}
       <div class="header-top">
-        <div class="breadcrumbs">
-          <a href="../../index.html">home</a>
-          <span class="sep">/</span>
-          <a href="../index.html">discrete</a>
-          <span class="sep">/</span>
-          <span class="current">assignments</span>
-        </div>
-        <button id="theme-toggle" class="theme-btn" type="button" aria-label="toggle theme">theme</button>
+        <h1 class="site-title">discrete // assignments</h1>
+        {header_controls()}
       </div>
-      <h1 class="site-title">discrete // assignments</h1>
     </header>
 
     {nav(2)}
@@ -306,12 +374,10 @@ DISCRETE_ASSIGN = f"""<!DOCTYPE html>
   <script src="../../js/app.js"></script>
 </body>
 </html>"""
-with open(os.path.join(BASE_DIR, "discrete", "assignments", "index.html"), "w", encoding="utf-8") as f:
-    f.write(DISCRETE_ASSIGN)
 
-# ==========================================
+# -------------------------------------------------------------
 # 3. DLD
-# ==========================================
+# -------------------------------------------------------------
 DLD_INDEX = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -322,24 +388,20 @@ DLD_INDEX = f"""<!DOCTYPE html>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+  {drawer(1)}
   <div class="container">
     <header>
+      {you_are_here(1, [('dld', None)])}
       <div class="header-top">
-        <div class="breadcrumbs">
-          <a href="../index.html">home</a>
-          <span class="sep">/</span>
-          <span class="current">dld</span>
-        </div>
-        <button id="theme-toggle" class="theme-btn" type="button" aria-label="toggle theme">theme</button>
+        <h1 class="site-title">dld</h1>
+        {header_controls()}
       </div>
-      <h1 class="site-title">dld</h1>
     </header>
 
     {nav(1)}
 
     <div class="notice-box">
-      <p><strong>deadline:</strong> 23 november 2026</p>
-      <p><strong>note:</strong> to be done on a separate notebook.</p>
+      <p><strong>active deadline:</strong> dld assignments due 23 november 2026 (to be done on a separate notebook)</p>
     </div>
 
     <main>
@@ -361,30 +423,20 @@ DLD_INDEX = f"""<!DOCTYPE html>
         </ul>
       </section>
 
-      <div class="grid-2">
-        <div class="section-block">
-          <h2 class="section-title">assignments</h2>
-          <div>
-            <a href="assignments/index.html" class="btn">open assignments/ &rarr;</a>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2 class="section-title">practical lab record</h2>
-          <div>
-            <a href="practical-lab-record/index.html" class="btn">open practical lab record/ &rarr;</a>
-          </div>
+      <div class="section-block">
+        <h2 class="section-title">subpages</h2>
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+          <a href="assignments/index.html" class="btn">open assignments/ &rarr;</a>
+          <a href="practical-lab-record/index.html" class="btn">open practical lab record/ &rarr;</a>
         </div>
       </div>
     </main>
 
-    {footer(1, 'dld')}
+    {footer(1)}
   </div>
   <script src="../js/app.js"></script>
 </body>
 </html>"""
-with open(os.path.join(BASE_DIR, "dld", "index.html"), "w", encoding="utf-8") as f:
-    f.write(DLD_INDEX)
 
 DLD_ASSIGN = f"""<!DOCTYPE html>
 <html lang="en">
@@ -396,37 +448,32 @@ DLD_ASSIGN = f"""<!DOCTYPE html>
   <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
+  {drawer(2)}
   <div class="container">
     <header>
+      {you_are_here(2, [('dld', '../index.html'), ('assignments', None)])}
       <div class="header-top">
-        <div class="breadcrumbs">
-          <a href="../../index.html">home</a>
-          <span class="sep">/</span>
-          <a href="../index.html">dld</a>
-          <span class="sep">/</span>
-          <span class="current">assignments</span>
-        </div>
-        <button id="theme-toggle" class="theme-btn" type="button" aria-label="toggle theme">theme</button>
+        <h1 class="site-title">dld // assignments</h1>
+        {header_controls()}
       </div>
-      <h1 class="site-title">dld // assignments</h1>
     </header>
 
     {nav(2)}
 
     <div class="notice-box">
       <p><strong>deadline:</strong> 23 november 2026</p>
-      <p><strong>note:</strong> to be done on a separate notebook.</p>
+      <p><strong>instructions:</strong> to be done on a separate notebook.</p>
     </div>
 
     <main>
       <section class="section-block">
-        <h2 class="section-title">assignment 1</h2>
+        <h2 class="section-title">set 1</h2>
         {pdf_embed('../../assets/pdfs/dld/dld_assignment_1.pdf', 'dld_assignment_1.pdf')}
       </section>
 
       <section class="section-block">
-        <h2 class="section-title">assignment 2 (set i & set ii)</h2>
-        {pdf_embed('../../assets/pdfs/dld/dld_assignment_2.pdf', 'dld 2nd assignment set i & set ii.pdf')}
+        <h2 class="section-title">set 2</h2>
+        {pdf_embed('../../assets/pdfs/dld/dld_assignment_2.pdf', 'dld_assignment_2.pdf')}
       </section>
     </main>
 
@@ -435,8 +482,6 @@ DLD_ASSIGN = f"""<!DOCTYPE html>
   <script src="../../js/app.js"></script>
 </body>
 </html>"""
-with open(os.path.join(BASE_DIR, "dld", "assignments", "index.html"), "w", encoding="utf-8") as f:
-    f.write(DLD_ASSIGN)
 
 DLD_PRACT = f"""<!DOCTYPE html>
 <html lang="en">
@@ -448,44 +493,40 @@ DLD_PRACT = f"""<!DOCTYPE html>
   <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
+  {drawer(2)}
   <div class="container">
     <header>
+      {you_are_here(2, [('dld', '../index.html'), ('practical lab record', None)])}
       <div class="header-top">
-        <div class="breadcrumbs">
-          <a href="../../index.html">home</a>
-          <span class="sep">/</span>
-          <a href="../index.html">dld</a>
-          <span class="sep">/</span>
-          <span class="current">practical lab record</span>
-        </div>
-        <button id="theme-toggle" class="theme-btn" type="button" aria-label="toggle theme">theme</button>
+        <h1 class="site-title">dld // practical lab record</h1>
+        {header_controls()}
       </div>
-      <h1 class="site-title">dld // practical lab record</h1>
     </header>
 
     {nav(2)}
 
     <div class="notice-box">
-      <p><strong>experiment 3:</strong> date: 03 september 2026</p>
-      <p><strong>experiment 4:</strong> date: 01 august 2026</p>
+      <p><strong>course:</strong> digital logic design laboratory</p>
+      <p><strong>experiment 3 date:</strong> 03 september 2026</p>
+      <p><strong>experiment 4 date:</strong> 01 august 2026</p>
     </div>
 
     <main>
       <!-- Cover Page -->
       <section class="section-block">
-        <h2 class="section-title">cover page &ndash; digital logic design laboratory</h2>
-        {pdf_embed('../../assets/pdfs/dld/cover_practical.pdf', 'cover_CS2307_Digital_Logic_Design_Laboratory.pdf')}
+        <h2 class="section-title">cover page &ndash; dld practical laboratory</h2>
+        {pdf_embed('../../assets/pdfs/dld/cover_practical.pdf', 'cover_CS2302_Digital_Logic_and_Design_Practical.pdf')}
       </section>
 
-      <!-- Exp 3 -->
+      <!-- Experiment 3 Record -->
       <section class="section-block">
-        <h2 class="section-title">experiment 3 &ndash; lab record</h2>
+        <h2 class="section-title">experiment 3 (03 september 2026)</h2>
         {pdf_embed('../../assets/pdfs/dld/dld_exp3_lab_record.pdf', 'dld_exp3_lab_record.pdf')}
       </section>
 
-      <!-- Exp 4 -->
+      <!-- Experiment 4 Record -->
       <section class="section-block">
-        <h2 class="section-title">experiment 4 &ndash; lab record</h2>
+        <h2 class="section-title">experiment 4 (01 august 2026)</h2>
         {pdf_embed('../../assets/pdfs/dld/dld_exp4_lab_record.pdf', 'dld_exp4_lab_record.pdf')}
       </section>
     </main>
@@ -495,12 +536,10 @@ DLD_PRACT = f"""<!DOCTYPE html>
   <script src="../../js/app.js"></script>
 </body>
 </html>"""
-with open(os.path.join(BASE_DIR, "dld", "practical-lab-record", "index.html"), "w", encoding="utf-8") as f:
-    f.write(DLD_PRACT)
 
-# ==========================================
+# -------------------------------------------------------------
 # 4. PPL
-# ==========================================
+# -------------------------------------------------------------
 PPL_INDEX = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -511,20 +550,21 @@ PPL_INDEX = f"""<!DOCTYPE html>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+  {drawer(1)}
   <div class="container">
     <header>
+      {you_are_here(1, [('ppl', None)])}
       <div class="header-top">
-        <div class="breadcrumbs">
-          <a href="../index.html">home</a>
-          <span class="sep">/</span>
-          <span class="current">ppl</span>
-        </div>
-        <button id="theme-toggle" class="theme-btn" type="button" aria-label="toggle theme">theme</button>
+        <h1 class="site-title">ppl</h1>
+        {header_controls()}
       </div>
-      <h1 class="site-title">ppl</h1>
     </header>
 
     {nav(1)}
+
+    <div class="notice-box">
+      <p><strong>course:</strong> principles of programming languages</p>
+    </div>
 
     <main>
       <section class="tree-view">
@@ -545,30 +585,20 @@ PPL_INDEX = f"""<!DOCTYPE html>
         </ul>
       </section>
 
-      <div class="grid-2">
-        <div class="section-block">
-          <h2 class="section-title">assignments</h2>
-          <div>
-            <a href="assignments/index.html" class="btn">open assignments/ &rarr;</a>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2 class="section-title">practical lab record</h2>
-          <div>
-            <a href="practical-lab-record/index.html" class="btn">open practical lab record/ &rarr;</a>
-          </div>
+      <div class="section-block">
+        <h2 class="section-title">subpages</h2>
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+          <a href="assignments/index.html" class="btn">open assignments/ &rarr;</a>
+          <a href="practical-lab-record/index.html" class="btn">open practical lab record/ &rarr;</a>
         </div>
       </div>
     </main>
 
-    {footer(1, 'ppl')}
+    {footer(1)}
   </div>
   <script src="../js/app.js"></script>
 </body>
 </html>"""
-with open(os.path.join(BASE_DIR, "ppl", "index.html"), "w", encoding="utf-8") as f:
-    f.write(PPL_INDEX)
 
 PPL_ASSIGN = f"""<!DOCTYPE html>
 <html lang="en">
@@ -580,37 +610,31 @@ PPL_ASSIGN = f"""<!DOCTYPE html>
   <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
+  {drawer(2)}
   <div class="container">
     <header>
+      {you_are_here(2, [('ppl', '../index.html'), ('assignments', None)])}
       <div class="header-top">
-        <div class="breadcrumbs">
-          <a href="../../index.html">home</a>
-          <span class="sep">/</span>
-          <a href="../index.html">ppl</a>
-          <span class="sep">/</span>
-          <span class="current">assignments</span>
-        </div>
-        <button id="theme-toggle" class="theme-btn" type="button" aria-label="toggle theme">theme</button>
+        <h1 class="site-title">ppl // assignments</h1>
+        {header_controls()}
       </div>
-      <h1 class="site-title">ppl // assignments</h1>
     </header>
 
     {nav(2)}
 
     <div class="notice-box">
-      <p><strong>instruction:</strong> we have to print and submit.</p>
+      <p><strong>instructions:</strong> print and submit.</p>
     </div>
 
     <main>
-      <!-- Cover Page -->
       <section class="section-block">
         <h2 class="section-title">cover page &ndash; ppl assignment</h2>
-        {pdf_embed('../../assets/pdfs/ppl/cover_assignment.pdf', 'cover_CS2309_Principles_of_Programming_Languages_Assignment.pdf')}
+        {pdf_embed('../../assets/pdfs/ppl/cover_assignment.pdf', 'cover_CS2308_Principles_of_Programming_Languages_Assignment.pdf')}
       </section>
 
       <section class="section-block">
-        <h2 class="section-title">james ppl assignment (print & submit)</h2>
-        {pdf_embed('../../assets/pdfs/ppl/james_ppl_assignment.pdf', 'james ppl assignment.pdf')}
+        <h2 class="section-title">james ppl assignment</h2>
+        {pdf_embed('../../assets/pdfs/ppl/james_ppl_assignment.pdf', 'james ppl assignments.pdf')}
       </section>
     </main>
 
@@ -619,8 +643,6 @@ PPL_ASSIGN = f"""<!DOCTYPE html>
   <script src="../../js/app.js"></script>
 </body>
 </html>"""
-with open(os.path.join(BASE_DIR, "ppl", "assignments", "index.html"), "w", encoding="utf-8") as f:
-    f.write(PPL_ASSIGN)
 
 PPL_PRACT = f"""<!DOCTYPE html>
 <html lang="en">
@@ -632,33 +654,28 @@ PPL_PRACT = f"""<!DOCTYPE html>
   <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
+  {drawer(2)}
   <div class="container">
     <header>
+      {you_are_here(2, [('ppl', '../index.html'), ('practical lab record', None)])}
       <div class="header-top">
-        <div class="breadcrumbs">
-          <a href="../../index.html">home</a>
-          <span class="sep">/</span>
-          <a href="../index.html">ppl</a>
-          <span class="sep">/</span>
-          <span class="current">practical lab record</span>
-        </div>
-        <button id="theme-toggle" class="theme-btn" type="button" aria-label="toggle theme">theme</button>
+        <h1 class="site-title">ppl // practical lab record</h1>
+        {header_controls()}
       </div>
-      <h1 class="site-title">ppl // practical lab record</h1>
     </header>
 
     {nav(2)}
 
     <div class="notice-box">
       <p><strong>course:</strong> cs2310 &ndash; ppl laboratory</p>
-      <p><strong>instructions:</strong> handwrite the source code for each experiment. cut and paste the corresponding terminal output from the output print pdf.</p>
+      <p><strong>instructions:</strong> handwrite the code and cut and paste outputs from the output print pdf.</p>
     </div>
 
     <main>
       <!-- Cover Page -->
       <section class="section-block">
-        <h2 class="section-title">cover page &ndash; ppl practical</h2>
-        {pdf_embed('../../assets/pdfs/ppl/cover_practical.pdf', 'cover_CS2309_Principles_of_Programming_Languages_Practical.pdf')}
+        <h2 class="section-title">cover page &ndash; ppl practical laboratory</h2>
+        {pdf_embed('../../assets/pdfs/ppl/cover_practical.pdf', 'cover_CS2310_Principles_of_Programming_Languages_Practical.pdf')}
       </section>
 
       <!-- Experiment List -->
@@ -687,14 +704,14 @@ PPL_PRACT = f"""<!DOCTYPE html>
 
       <!-- Code PDF -->
       <section class="section-block">
-        <h2 class="section-title">cpp lab record complete (handwrite code)</h2>
-        {pdf_embed('../../assets/pdfs/ppl/ppl_CPP_Lab_Record_Complete.pdf', 'ppl CPP_Lab_Record_Complete.pdf')}
+        <h2 class="section-title">ppl complete lab record (handwrite code)</h2>
+        {pdf_embed('../../assets/pdfs/ppl/ppl_CPP_Lab_Record_Complete.pdf', 'CPP_Lab_Record_Complete.pdf')}
       </section>
 
       <!-- Outputs PDF -->
       <section class="section-block">
         <h2 class="section-title">ppl output print (cut & paste outputs)</h2>
-        {pdf_embed('../../assets/pdfs/ppl/ppl_output_print.pdf', 'ppl output print.pdf')}
+        {pdf_embed('../../assets/pdfs/ppl/ppl_output_print.pdf', 'output print.pdf')}
       </section>
     </main>
 
@@ -703,12 +720,10 @@ PPL_PRACT = f"""<!DOCTYPE html>
   <script src="../../js/app.js"></script>
 </body>
 </html>"""
-with open(os.path.join(BASE_DIR, "ppl", "practical-lab-record", "index.html"), "w", encoding="utf-8") as f:
-    f.write(PPL_PRACT)
 
-# ==========================================
+# -------------------------------------------------------------
 # 5. DEV TOOLS
-# ==========================================
+# -------------------------------------------------------------
 DEV_INDEX = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -719,20 +734,21 @@ DEV_INDEX = f"""<!DOCTYPE html>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+  {drawer(1)}
   <div class="container">
     <header>
+      {you_are_here(1, [('dev tools', None)])}
       <div class="header-top">
-        <div class="breadcrumbs">
-          <a href="../index.html">home</a>
-          <span class="sep">/</span>
-          <span class="current">dev tools</span>
-        </div>
-        <button id="theme-toggle" class="theme-btn" type="button" aria-label="toggle theme">theme</button>
+        <h1 class="site-title">dev tools</h1>
+        {header_controls()}
       </div>
-      <h1 class="site-title">dev tools</h1>
     </header>
 
     {nav(1)}
+
+    <div class="notice-box">
+      <p><strong>course:</strong> development tools laboratory</p>
+    </div>
 
     <main>
       <section class="tree-view">
@@ -753,30 +769,20 @@ DEV_INDEX = f"""<!DOCTYPE html>
         </ul>
       </section>
 
-      <div class="grid-2">
-        <div class="section-block">
-          <h2 class="section-title">assignments</h2>
-          <div>
-            <a href="assignments/index.html" class="btn">open assignments/ &rarr;</a>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2 class="section-title">practical lab record</h2>
-          <div>
-            <a href="practical-lab-record/index.html" class="btn">open practical lab record/ &rarr;</a>
-          </div>
+      <div class="section-block">
+        <h2 class="section-title">subpages</h2>
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+          <a href="assignments/index.html" class="btn">open assignments/ &rarr;</a>
+          <a href="practical-lab-record/index.html" class="btn">open practical lab record/ &rarr;</a>
         </div>
       </div>
     </main>
 
-    {footer(1, 'dev tools')}
+    {footer(1)}
   </div>
   <script src="../js/app.js"></script>
 </body>
 </html>"""
-with open(os.path.join(BASE_DIR, "dev-tools", "index.html"), "w", encoding="utf-8") as f:
-    f.write(DEV_INDEX)
 
 DEV_ASSIGN = f"""<!DOCTYPE html>
 <html lang="en">
@@ -788,35 +794,35 @@ DEV_ASSIGN = f"""<!DOCTYPE html>
   <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
+  {drawer(2)}
   <div class="container">
     <header>
+      {you_are_here(2, [('dev tools', '../index.html'), ('assignments', None)])}
       <div class="header-top">
-        <div class="breadcrumbs">
-          <a href="../../index.html">home</a>
-          <span class="sep">/</span>
-          <a href="../index.html">dev tools</a>
-          <span class="sep">/</span>
-          <span class="current">assignments</span>
-        </div>
-        <button id="theme-toggle" class="theme-btn" type="button" aria-label="toggle theme">theme</button>
+        <h1 class="site-title">dev tools // assignments</h1>
+        {header_controls()}
       </div>
-      <h1 class="site-title">dev tools // assignments</h1>
     </header>
 
     {nav(2)}
+
+    <div class="notice-box">
+      <p><strong>instructions:</strong> complete the assignments listed below.</p>
+    </div>
 
     <main>
       <!-- Cover Page -->
       <section class="section-block">
         <h2 class="section-title">cover page &ndash; dev tools assignment</h2>
-        {pdf_embed('../../assets/pdfs/dev-tools/cover_assignment.pdf', 'cover_CS2303_Development_Tools_Laboratory_Assignment.pdf')}
+        {pdf_embed('../../assets/pdfs/dev-tools/cover_assignment.pdf', 'cover_CS2303_Development_Tools_Assignment.pdf')}
       </section>
 
+      <!-- Assignment Questions -->
       <section class="section-block">
         <h2 class="section-title">assignments</h2>
         <ul class="action-list">
-          <li>1. resume/cv in latex with passport photo</li>
-          <li>2. technical paper using ieee conference latex template</li>
+          <li><strong>1.</strong> resume/cv in latex with passport photo</li>
+          <li><strong>2.</strong> technical paper using ieee conference latex template</li>
         </ul>
       </section>
     </main>
@@ -826,8 +832,6 @@ DEV_ASSIGN = f"""<!DOCTYPE html>
   <script src="../../js/app.js"></script>
 </body>
 </html>"""
-with open(os.path.join(BASE_DIR, "dev-tools", "assignments", "index.html"), "w", encoding="utf-8") as f:
-    f.write(DEV_ASSIGN)
 
 DEV_PRACT = f"""<!DOCTYPE html>
 <html lang="en">
@@ -839,65 +843,59 @@ DEV_PRACT = f"""<!DOCTYPE html>
   <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
+  {drawer(2)}
   <div class="container">
     <header>
+      {you_are_here(2, [('dev tools', '../index.html'), ('practical lab record', None)])}
       <div class="header-top">
-        <div class="breadcrumbs">
-          <a href="../../index.html">home</a>
-          <span class="sep">/</span>
-          <a href="../index.html">dev tools</a>
-          <span class="sep">/</span>
-          <span class="current">practical lab record</span>
-        </div>
-        <button id="theme-toggle" class="theme-btn" type="button" aria-label="toggle theme">theme</button>
+        <h1 class="site-title">dev tools // practical lab record</h1>
+        {header_controls()}
       </div>
-      <h1 class="site-title">dev tools // practical lab record</h1>
     </header>
 
     {nav(2)}
 
     <div class="notice-box">
       <p><strong>course:</strong> cs2303 &ndash; development tools laboratory</p>
-      <p><strong>experiments 1&ndash;5:</strong> all print and attach.</p>
-      <p><strong>experiments 6 &amp; 7:</strong> handwrite the source code, and attach/paste the output from the outputs pdf.</p>
+      <p><strong>instructions:</strong> for exp 1 to 5, all print and attach; for exp 6 & 7, handwrite the code and paste the outputs from the outputs pdf.</p>
     </div>
 
     <main>
       <!-- Cover Page -->
       <section class="section-block">
-        <h2 class="section-title">cover page &ndash; development tools laboratory</h2>
-        {pdf_embed('../../assets/pdfs/dev-tools/cover_practical.pdf', 'cover_CS2303_Development_Tools_Laboratory_Practical.pdf')}
+        <h2 class="section-title">cover page &ndash; dev tools practical laboratory</h2>
+        {pdf_embed('../../assets/pdfs/dev-tools/cover_practical.pdf', 'cover_CS2303_Development_Tools_Practical.pdf')}
       </section>
 
       <!-- Experiment List -->
       <section class="section-block">
         <h2 class="section-title">experiment list & dates</h2>
         <ul class="action-list">
-          <li><strong>experiment 1:</strong> technical report &bull; date: 02 september 2026</li>
-          <li><strong>experiment 2:</strong> mathematical symbols, operators and equations &bull; date: 16 september 2026</li>
-          <li><strong>experiment 3:</strong> creating a table with caption and label &bull; date: 16 october 2026</li>
-          <li><strong>experiment 4:</strong> side-by-side figures using subfigures &bull; date: 16 october 2026</li>
-          <li><strong>experiment 5:</strong> citations and references in latex &bull; date: 16 october 2026</li>
-          <li><strong>experiment 6:</strong> date: 21 november 2026</li>
-          <li><strong>experiment 7:</strong> date: 21 november 2026</li>
+          <li><strong>experiment 1:</strong> technical report &bull; date: 02 september 2026 (print and attach)</li>
+          <li><strong>experiment 2:</strong> mathematical symbols, operators and equations &bull; date: 16 september 2026 (print and attach)</li>
+          <li><strong>experiment 3:</strong> creating a table with caption and label &bull; date: 16 october 2026 (print and attach)</li>
+          <li><strong>experiment 4:</strong> side-by-side figures using subfigures &bull; date: 16 october 2026 (print and attach)</li>
+          <li><strong>experiment 5:</strong> citations and references in latex &bull; date: 16 october 2026 (print and attach)</li>
+          <li><strong>experiment 6:</strong> date: 21 november 2026 (handwrite code, paste output)</li>
+          <li><strong>experiment 7:</strong> date: 21 november 2026 (handwrite code, paste output)</li>
         </ul>
       </section>
 
-      <!-- Exp 1-5 -->
+      <!-- Experiments 1 to 5 -->
       <section class="section-block">
-        <h2 class="section-title">exp 1&ndash;5 lab copy output and code (print and attach)</h2>
-        {pdf_embed('../../assets/pdfs/dev-tools/adit_dev_tools_1_to_5_lab_copy_output_and_code.pdf', 'adit dev tools 1 to 5 lab copy output and code.pdf')}
+        <h2 class="section-title">experiments 1 to 5 (print and attach)</h2>
+        {pdf_embed('../../assets/pdfs/dev-tools/adit_dev_tools_1_to_5_lab_copy_output_and_code.pdf', 'dev_tools_1_to_5_lab_copy_output_and_code.pdf')}
       </section>
 
-      <!-- Exp 6 & 7 Code -->
+      <!-- Experiment 6 & 7 Code -->
       <section class="section-block">
-        <h2 class="section-title">exp 6 &amp; 7 (handwrite code)</h2>
+        <h2 class="section-title">experiments 6 & 7 &ndash; code (handwrite code)</h2>
         {pdf_embed('../../assets/pdfs/dev-tools/dev_tools_6_7.pdf', 'dev tools 6 7.pdf')}
       </section>
 
-      <!-- Exp 6 & 7 Output -->
+      <!-- Experiment 6 & 7 Output -->
       <section class="section-block">
-        <h2 class="section-title">exp 6 &amp; 7 output (attach / paste outputs)</h2>
+        <h2 class="section-title">experiments 6 & 7 &ndash; output (paste output)</h2>
         {pdf_embed('../../assets/pdfs/dev-tools/dev_6_7_output.pdf', 'dev 6 7 output.pdf')}
       </section>
     </main>
@@ -907,12 +905,10 @@ DEV_PRACT = f"""<!DOCTYPE html>
   <script src="../../js/app.js"></script>
 </body>
 </html>"""
-with open(os.path.join(BASE_DIR, "dev-tools", "practical-lab-record", "index.html"), "w", encoding="utf-8") as f:
-    f.write(DEV_PRACT)
 
-# ==========================================
+# -------------------------------------------------------------
 # 6. DSA
-# ==========================================
+# -------------------------------------------------------------
 DSA_INDEX = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -923,24 +919,20 @@ DSA_INDEX = f"""<!DOCTYPE html>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+  {drawer(1)}
   <div class="container">
     <header>
+      {you_are_here(1, [('dsa', None)])}
       <div class="header-top">
-        <div class="breadcrumbs">
-          <a href="../index.html">home</a>
-          <span class="sep">/</span>
-          <span class="current">dsa</span>
-        </div>
-        <button id="theme-toggle" class="theme-btn" type="button" aria-label="toggle theme">theme</button>
+        <h1 class="site-title">dsa</h1>
+        {header_controls()}
       </div>
-      <h1 class="site-title">dsa</h1>
     </header>
 
     {nav(1)}
 
     <div class="notice-box">
-      <p><strong>assignments note:</strong> handwrite in a4 sheet.</p>
-      <p><strong>practicals note:</strong> handwrite the code and paste the outputs.</p>
+      <p><strong>course:</strong> data structures and algorithms</p>
     </div>
 
     <main>
@@ -962,30 +954,20 @@ DSA_INDEX = f"""<!DOCTYPE html>
         </ul>
       </section>
 
-      <div class="grid-2">
-        <div class="section-block">
-          <h2 class="section-title">assignments</h2>
-          <div>
-            <a href="assignments/index.html" class="btn">open assignments/ &rarr;</a>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2 class="section-title">practical lab record</h2>
-          <div>
-            <a href="practical-lab-record/index.html" class="btn">open practical lab record/ &rarr;</a>
-          </div>
+      <div class="section-block">
+        <h2 class="section-title">subpages</h2>
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+          <a href="assignments/index.html" class="btn">open assignments/ &rarr;</a>
+          <a href="practical-lab-record/index.html" class="btn">open practical lab record/ &rarr;</a>
         </div>
       </div>
     </main>
 
-    {footer(1, 'dsa')}
+    {footer(1)}
   </div>
   <script src="../js/app.js"></script>
 </body>
 </html>"""
-with open(os.path.join(BASE_DIR, "dsa", "index.html"), "w", encoding="utf-8") as f:
-    f.write(DSA_INDEX)
 
 DSA_ASSIGN = f"""<!DOCTYPE html>
 <html lang="en">
@@ -997,19 +979,14 @@ DSA_ASSIGN = f"""<!DOCTYPE html>
   <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
+  {drawer(2)}
   <div class="container">
     <header>
+      {you_are_here(2, [('dsa', '../index.html'), ('assignments', None)])}
       <div class="header-top">
-        <div class="breadcrumbs">
-          <a href="../../index.html">home</a>
-          <span class="sep">/</span>
-          <a href="../index.html">dsa</a>
-          <span class="sep">/</span>
-          <span class="current">assignments</span>
-        </div>
-        <button id="theme-toggle" class="theme-btn" type="button" aria-label="toggle theme">theme</button>
+        <h1 class="site-title">dsa // assignments</h1>
+        {header_controls()}
       </div>
-      <h1 class="site-title">dsa // assignments</h1>
     </header>
 
     {nav(2)}
@@ -1037,8 +1014,6 @@ DSA_ASSIGN = f"""<!DOCTYPE html>
   <script src="../../js/app.js"></script>
 </body>
 </html>"""
-with open(os.path.join(BASE_DIR, "dsa", "assignments", "index.html"), "w", encoding="utf-8") as f:
-    f.write(DSA_ASSIGN)
 
 DSA_PRACT = f"""<!DOCTYPE html>
 <html lang="en">
@@ -1050,19 +1025,14 @@ DSA_PRACT = f"""<!DOCTYPE html>
   <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
+  {drawer(2)}
   <div class="container">
     <header>
+      {you_are_here(2, [('dsa', '../index.html'), ('practical lab record', None)])}
       <div class="header-top">
-        <div class="breadcrumbs">
-          <a href="../../index.html">home</a>
-          <span class="sep">/</span>
-          <a href="../index.html">dsa</a>
-          <span class="sep">/</span>
-          <span class="current">practical lab record</span>
-        </div>
-        <button id="theme-toggle" class="theme-btn" type="button" aria-label="toggle theme">theme</button>
+        <h1 class="site-title">dsa // practical lab record</h1>
+        {header_controls()}
       </div>
-      <h1 class="site-title">dsa // practical lab record</h1>
     </header>
 
     {nav(2)}
@@ -1116,16 +1086,10 @@ DSA_PRACT = f"""<!DOCTYPE html>
   <script src="../../js/app.js"></script>
 </body>
 </html>"""
-with open(os.path.join(BASE_DIR, "dsa", "practical-lab-record", "index.html"), "w", encoding="utf-8") as f:
-    f.write(DSA_PRACT)
 
-print("Site built with all updated wording, experiments, and cover pages!")
-
-# ==========================================
-# 6. FEEDBACK CONTROL SYSTEMS (only assignments)
-# ==========================================
-os.makedirs(os.path.join(BASE_DIR, "feedback-control-systems", "assignments"), exist_ok=True)
-
+# -------------------------------------------------------------
+# 7. FEEDBACK CONTROL SYSTEMS
+# -------------------------------------------------------------
 FCS_INDEX = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1136,17 +1100,14 @@ FCS_INDEX = f"""<!DOCTYPE html>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+  {drawer(1)}
   <div class="container">
     <header>
+      {you_are_here(1, [('feedback control systems', None)])}
       <div class="header-top">
-        <div class="breadcrumbs">
-          <a href="../index.html">home</a>
-          <span class="sep">/</span>
-          <span class="current">feedback control systems</span>
-        </div>
-        <button id="theme-toggle" class="theme-btn" type="button" aria-label="toggle theme">theme</button>
+        <h1 class="site-title">feedback control systems</h1>
+        {header_controls()}
       </div>
-      <h1 class="site-title">feedback control systems</h1>
     </header>
 
     {nav(1)}
@@ -1182,8 +1143,6 @@ FCS_INDEX = f"""<!DOCTYPE html>
   <script src="../js/app.js"></script>
 </body>
 </html>"""
-with open(os.path.join(BASE_DIR, "feedback-control-systems", "index.html"), "w", encoding="utf-8") as f:
-    f.write(FCS_INDEX)
 
 FCS_ASSIGN = f"""<!DOCTYPE html>
 <html lang="en">
@@ -1195,19 +1154,14 @@ FCS_ASSIGN = f"""<!DOCTYPE html>
   <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
+  {drawer(2)}
   <div class="container">
     <header>
+      {you_are_here(2, [('feedback control systems', '../index.html'), ('assignments', None)])}
       <div class="header-top">
-        <div class="breadcrumbs">
-          <a href="../../index.html">home</a>
-          <span class="sep">/</span>
-          <a href="../index.html">feedback control systems</a>
-          <span class="sep">/</span>
-          <span class="current">assignments</span>
-        </div>
-        <button id="theme-toggle" class="theme-btn" type="button" aria-label="toggle theme">theme</button>
+        <h1 class="site-title">feedback control systems // assignments</h1>
+        {header_controls()}
       </div>
-      <h1 class="site-title">feedback control systems // assignments</h1>
     </header>
 
     {nav(2)}
@@ -1248,5 +1202,31 @@ FCS_ASSIGN = f"""<!DOCTYPE html>
   <script src="../../js/app.js"></script>
 </body>
 </html>"""
-with open(os.path.join(BASE_DIR, "feedback-control-systems", "assignments", "index.html"), "w", encoding="utf-8") as f:
-    f.write(FCS_ASSIGN)
+
+# Write all files
+pages = {
+    os.path.join(BASE_DIR, "index.html"): INDEX_HTML,
+    os.path.join(BASE_DIR, "discrete", "index.html"): DISCRETE_INDEX,
+    os.path.join(BASE_DIR, "discrete", "assignments", "index.html"): DISCRETE_ASSIGN,
+    os.path.join(BASE_DIR, "dld", "index.html"): DLD_INDEX,
+    os.path.join(BASE_DIR, "dld", "assignments", "index.html"): DLD_ASSIGN,
+    os.path.join(BASE_DIR, "dld", "practical-lab-record", "index.html"): DLD_PRACT,
+    os.path.join(BASE_DIR, "ppl", "index.html"): PPL_INDEX,
+    os.path.join(BASE_DIR, "ppl", "assignments", "index.html"): PPL_ASSIGN,
+    os.path.join(BASE_DIR, "ppl", "practical-lab-record", "index.html"): PPL_PRACT,
+    os.path.join(BASE_DIR, "dev-tools", "index.html"): DEV_INDEX,
+    os.path.join(BASE_DIR, "dev-tools", "assignments", "index.html"): DEV_ASSIGN,
+    os.path.join(BASE_DIR, "dev-tools", "practical-lab-record", "index.html"): DEV_PRACT,
+    os.path.join(BASE_DIR, "dsa", "index.html"): DSA_INDEX,
+    os.path.join(BASE_DIR, "dsa", "assignments", "index.html"): DSA_ASSIGN,
+    os.path.join(BASE_DIR, "dsa", "practical-lab-record", "index.html"): DSA_PRACT,
+    os.path.join(BASE_DIR, "feedback-control-systems", "index.html"): FCS_INDEX,
+    os.path.join(BASE_DIR, "feedback-control-systems", "assignments", "index.html"): FCS_ASSIGN,
+}
+
+for path, content in pages.items():
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(content)
+
+print(f"Successfully generated all {len(pages)} pages with side drawer, you-are-here navigation, and mobile optimizations!")

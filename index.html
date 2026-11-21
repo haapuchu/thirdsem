@@ -8,11 +8,73 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div id="drawer-overlay" class="drawer-overlay" aria-hidden="true"></div>
+<aside id="side-drawer" class="side-drawer" aria-label="side navigation" aria-hidden="true">
+  <div class="drawer-header">
+    <span class="drawer-title">thirdsem // menu</span>
+    <button id="drawer-close" class="drawer-close-btn" type="button" aria-label="close menu">&times;</button>
+  </div>
+  <div class="drawer-body">
+    <div class="drawer-nav-group">
+      <a class="drawer-nav-link" href="./index.html"><strong>./ (home)</strong></a>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="./discrete/index.html">discrete/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="./discrete/assignments/index.html">assignments/</a>
+      </div>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="./dld/index.html">dld/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="./dld/assignments/index.html">assignments/</a>
+        <a class="drawer-sublink" href="./dld/practical-lab-record/index.html">practical lab record/</a>
+      </div>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="./ppl/index.html">ppl/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="./ppl/assignments/index.html">assignments/</a>
+        <a class="drawer-sublink" href="./ppl/practical-lab-record/index.html">practical lab record/</a>
+      </div>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="./dev-tools/index.html">dev tools/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="./dev-tools/assignments/index.html">assignments/</a>
+        <a class="drawer-sublink" href="./dev-tools/practical-lab-record/index.html">practical lab record/</a>
+      </div>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="./dsa/index.html">dsa/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="./dsa/assignments/index.html">assignments/</a>
+        <a class="drawer-sublink" href="./dsa/practical-lab-record/index.html">practical lab record/</a>
+      </div>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="./feedback-control-systems/index.html">feedback control systems/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="./feedback-control-systems/assignments/index.html">assignments/</a>
+      </div>
+    </div>
+  </div>
+</aside>
   <div class="container">
     <header>
+      <div class="you-are-here"><span class="yah-label">you are here:</span> <span class="yah-path"><span class="yah-current">./</span></span></div>
       <div class="header-top">
         <h1 class="site-title">./</h1>
-        <button id="theme-toggle" class="theme-btn" type="button" aria-label="toggle theme">theme</button>
+        <div class="header-controls">
+          <button id="menu-toggle" class="header-btn menu-btn" type="button" aria-label="toggle menu" aria-expanded="false">&equiv; menu</button>
+          <button id="theme-toggle" class="header-btn theme-btn" type="button" aria-label="toggle theme">theme</button>
+        </div>
       </div>
     </header>
 

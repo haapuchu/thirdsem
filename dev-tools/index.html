@@ -8,22 +8,83 @@
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+  <div id="drawer-overlay" class="drawer-overlay" aria-hidden="true"></div>
+<aside id="side-drawer" class="side-drawer" aria-label="side navigation" aria-hidden="true">
+  <div class="drawer-header">
+    <span class="drawer-title">thirdsem // menu</span>
+    <button id="drawer-close" class="drawer-close-btn" type="button" aria-label="close menu">&times;</button>
+  </div>
+  <div class="drawer-body">
+    <div class="drawer-nav-group">
+      <a class="drawer-nav-link" href="../index.html"><strong>./ (home)</strong></a>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="../discrete/index.html">discrete/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="../discrete/assignments/index.html">assignments/</a>
+      </div>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="../dld/index.html">dld/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="../dld/assignments/index.html">assignments/</a>
+        <a class="drawer-sublink" href="../dld/practical-lab-record/index.html">practical lab record/</a>
+      </div>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="../ppl/index.html">ppl/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="../ppl/assignments/index.html">assignments/</a>
+        <a class="drawer-sublink" href="../ppl/practical-lab-record/index.html">practical lab record/</a>
+      </div>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="../dev-tools/index.html">dev tools/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="../dev-tools/assignments/index.html">assignments/</a>
+        <a class="drawer-sublink" href="../dev-tools/practical-lab-record/index.html">practical lab record/</a>
+      </div>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="../dsa/index.html">dsa/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="../dsa/assignments/index.html">assignments/</a>
+        <a class="drawer-sublink" href="../dsa/practical-lab-record/index.html">practical lab record/</a>
+      </div>
+    </div>
+
+    <div class="drawer-nav-group">
+      <a class="drawer-subject-link" href="../feedback-control-systems/index.html">feedback control systems/</a>
+      <div class="drawer-sublinks">
+        <a class="drawer-sublink" href="../feedback-control-systems/assignments/index.html">assignments/</a>
+      </div>
+    </div>
+  </div>
+</aside>
   <div class="container">
     <header>
+      <div class="you-are-here"><span class="yah-label">you are here:</span> <span class="yah-path"><a href="../index.html">./</a> <span class="yah-sep">/</span> <span class="yah-current">dev tools</span></span></div>
       <div class="header-top">
-        <div class="breadcrumbs">
-          <a href="../index.html">home</a>
-          <span class="sep">/</span>
-          <span class="current">dev tools</span>
+        <h1 class="site-title">dev tools</h1>
+        <div class="header-controls">
+          <button id="menu-toggle" class="header-btn menu-btn" type="button" aria-label="toggle menu" aria-expanded="false">&equiv; menu</button>
+          <button id="theme-toggle" class="header-btn theme-btn" type="button" aria-label="toggle theme">theme</button>
         </div>
-        <button id="theme-toggle" class="theme-btn" type="button" aria-label="toggle theme">theme</button>
       </div>
-      <h1 class="site-title">dev tools</h1>
     </header>
 
     <nav class="quick-nav">
   <a href="../discrete/index.html">discrete</a> / <a href="../dld/index.html">dld</a> / <a href="../ppl/index.html">ppl</a> / <a href="../dev-tools/index.html">dev tools</a> / <a href="../dsa/index.html">dsa</a> / <a href="../feedback-control-systems/index.html">feedback control systems</a>
 </nav>
+
+    <div class="notice-box">
+      <p><strong>course:</strong> development tools laboratory</p>
+    </div>
 
     <main>
       <section class="tree-view">
@@ -44,19 +105,11 @@
         </ul>
       </section>
 
-      <div class="grid-2">
-        <div class="section-block">
-          <h2 class="section-title">assignments</h2>
-          <div>
-            <a href="assignments/index.html" class="btn">open assignments/ &rarr;</a>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2 class="section-title">practical lab record</h2>
-          <div>
-            <a href="practical-lab-record/index.html" class="btn">open practical lab record/ &rarr;</a>
-          </div>
+      <div class="section-block">
+        <h2 class="section-title">subpages</h2>
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+          <a href="assignments/index.html" class="btn">open assignments/ &rarr;</a>
+          <a href="practical-lab-record/index.html" class="btn">open practical lab record/ &rarr;</a>
         </div>
       </div>
     </main>

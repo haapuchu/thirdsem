@@ -1,5 +1,5 @@
 // ACADEMIC TREE PORTAL JAVASCRIPT
-// Handles checklist persistence, live search filter, dark/light mode toggle, and offline service worker
+// Handles checklist persistence, live search filter, dark/light mode toggle, side navigation drawer, and offline service worker
 
 (function() {
   // Theme logic
@@ -19,6 +19,7 @@
 
   // Bind on DOM load
   document.addEventListener('DOMContentLoaded', () => {
+    // Theme Button
     const btn = document.getElementById('theme-toggle');
     if (btn) {
       btn.textContent = getEffectiveTheme() === 'dark' ? 'light' : 'dark';
@@ -29,6 +30,67 @@
         applyTheme(next);
       });
     }
+
+    // Side Drawer Navigation
+    const menuBtn = document.getElementById('menu-toggle');
+    const drawer = document.getElementById('side-drawer');
+    const overlay = document.getElementById('drawer-overlay');
+    const closeBtn = document.getElementById('drawer-close');
+
+    function openDrawer() {
+      if (!drawer || !overlay) return;
+      drawer.classList.add('open');
+      overlay.classList.add('open');
+      drawer.setAttribute('aria-hidden', 'false');
+      overlay.setAttribute('aria-hidden', 'false');
+      if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      if (!drawer || !overlay) return;
+      drawer.classList.remove('open');
+      overlay.classList.remove('open');
+      drawer.setAttribute('aria-hidden', 'true');
+      overlay.setAttribute('aria-hidden', 'true');
+      if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    if (menuBtn) {
+      menuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (drawer && drawer.classList.contains('open')) {
+          closeDrawer();
+        } else {
+          openDrawer();
+        }
+      });
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    if (overlay) overlay.addEventListener('click', closeDrawer);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer && drawer.classList.contains('open')) {
+        closeDrawer();
+      }
+    });
+
+    // Highlight active link in drawer based on current location
+    try {
+      const currentNorm = window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
+      const drawerLinks = document.querySelectorAll('.side-drawer a');
+      drawerLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href) return;
+        const linkUrl = new URL(href, window.location.href);
+        const linkNorm = linkUrl.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
+        if (linkNorm === currentNorm) {
+          link.classList.add('drawer-active-item');
+        }
+      });
+    } catch (_) {}
 
     // Interactive Checkboxes
     const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
