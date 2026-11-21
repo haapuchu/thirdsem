@@ -321,13 +321,6 @@ DISCRETE_INDEX = f"""<!DOCTYPE html>
           </li>
         </ul>
       </section>
-
-      <div class="section-block">
-        <h2 class="section-title">assignments</h2>
-        <div>
-          <a href="assignments/index.html" class="btn">open assignments/ &rarr;</a>
-        </div>
-      </div>
     </main>
 
     {footer(1)}
@@ -422,14 +415,6 @@ DLD_INDEX = f"""<!DOCTYPE html>
           </li>
         </ul>
       </section>
-
-      <div class="section-block">
-        <h2 class="section-title">subpages</h2>
-        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-          <a href="assignments/index.html" class="btn">open assignments/ &rarr;</a>
-          <a href="practical-lab-record/index.html" class="btn">open practical lab record/ &rarr;</a>
-        </div>
-      </div>
     </main>
 
     {footer(1)}
@@ -584,14 +569,6 @@ PPL_INDEX = f"""<!DOCTYPE html>
           </li>
         </ul>
       </section>
-
-      <div class="section-block">
-        <h2 class="section-title">subpages</h2>
-        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-          <a href="assignments/index.html" class="btn">open assignments/ &rarr;</a>
-          <a href="practical-lab-record/index.html" class="btn">open practical lab record/ &rarr;</a>
-        </div>
-      </div>
     </main>
 
     {footer(1)}
@@ -768,14 +745,6 @@ DEV_INDEX = f"""<!DOCTYPE html>
           </li>
         </ul>
       </section>
-
-      <div class="section-block">
-        <h2 class="section-title">subpages</h2>
-        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-          <a href="assignments/index.html" class="btn">open assignments/ &rarr;</a>
-          <a href="practical-lab-record/index.html" class="btn">open practical lab record/ &rarr;</a>
-        </div>
-      </div>
     </main>
 
     {footer(1)}
@@ -876,8 +845,8 @@ DEV_PRACT = f"""<!DOCTYPE html>
           <li><strong>experiment 3:</strong> creating a table with caption and label &bull; date: 16 october 2026 (print and attach)</li>
           <li><strong>experiment 4:</strong> side-by-side figures using subfigures &bull; date: 16 october 2026 (print and attach)</li>
           <li><strong>experiment 5:</strong> citations and references in latex &bull; date: 16 october 2026 (print and attach)</li>
-          <li><strong>experiment 6:</strong> date: 21 november 2026 (handwrite code, paste output)</li>
-          <li><strong>experiment 7:</strong> date: 21 november 2026 (handwrite code, paste output)</li>
+          <li><strong>experiment 6:</strong> calculator program in c using git (add, commit, status, log, push, pull) &bull; date: 21 november 2026 (handwrite code, paste output)</li>
+          <li><strong>experiment 7:</strong> branching and merging in git (create operator branch, add modulus operator, merge to master) &bull; date: 21 november 2026 (handwrite code, paste output)</li>
         </ul>
       </section>
 
@@ -889,13 +858,13 @@ DEV_PRACT = f"""<!DOCTYPE html>
 
       <!-- Experiment 6 & 7 Code -->
       <section class="section-block">
-        <h2 class="section-title">experiments 6 & 7 &ndash; code (handwrite code)</h2>
+        <h2 class="section-title">experiments 6 & 7 &ndash; code: calculator program & git branching (handwrite code)</h2>
         {pdf_embed('../../assets/pdfs/dev-tools/dev_tools_6_7.pdf', 'dev tools 6 7.pdf')}
       </section>
 
       <!-- Experiment 6 & 7 Output -->
       <section class="section-block">
-        <h2 class="section-title">experiments 6 & 7 &ndash; output (paste output)</h2>
+        <h2 class="section-title">experiments 6 & 7 &ndash; output: terminal logs & git commands (paste output)</h2>
         {pdf_embed('../../assets/pdfs/dev-tools/dev_6_7_output.pdf', 'dev 6 7 output.pdf')}
       </section>
     </main>
@@ -953,14 +922,6 @@ DSA_INDEX = f"""<!DOCTYPE html>
           </li>
         </ul>
       </section>
-
-      <div class="section-block">
-        <h2 class="section-title">subpages</h2>
-        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-          <a href="assignments/index.html" class="btn">open assignments/ &rarr;</a>
-          <a href="practical-lab-record/index.html" class="btn">open practical lab record/ &rarr;</a>
-        </div>
-      </div>
     </main>
 
     {footer(1)}
@@ -1129,13 +1090,6 @@ FCS_INDEX = f"""<!DOCTYPE html>
           </li>
         </ul>
       </section>
-
-      <div class="section-block">
-        <h2 class="section-title">assignments</h2>
-        <div>
-          <a href="assignments/index.html" class="btn">open assignments/ &rarr;</a>
-        </div>
-      </div>
     </main>
 
     {footer(1)}
@@ -1229,4 +1183,4 @@ for path, content in pages.items():
     with open(path, "w", encoding="utf-8") as f:
         f.write(content)
 
-print(f"Successfully generated all {len(pages)} pages with side drawer, you-are-here navigation, and mobile optimizations!")
+print(f"Successfully generated all {len(pages)} pages without redundant subpages boxes and with Dev Tools Exp 6 & 7 detailed descriptions!")
