@@ -1,0 +1,17 @@
+# Clean URLs and redirect rules for Netlify
+/discrete /discrete/index.html 200
+/discrete/assignments /discrete/assignments/index.html 200
+/dld /dld/index.html 200
+/dld/assignments /dld/assignments/index.html 200
+/dld/practical-lab-record /dld/practical-lab-record/index.html 200
+/ppl /ppl/index.html 200
+/ppl/assignments /ppl/assignments/index.html 200
+/ppl/practical-lab-record /ppl/practical-lab-record/index.html 200
+/dev-tools /dev-tools/index.html 200
+/dev-tools/assignments /dev-tools/assignments/index.html 200
+/dev-tools/practical-lab-record /dev-tools/practical-lab-record/index.html 200
+/dsa /dsa/index.html 200
+/dsa/assignments /dsa/assignments/index.html 200
+/dsa/practical-lab-record /dsa/practical-lab-record/index.html 200
+/feedback-control-systems /feedback-control-systems/index.html 200
+/feedback-control-systems/assignments /feedback-control-systems/assignments/index.html 200

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>thirdsem</title>
+  <script>(function(){const t=localStorage.getItem('theme');if(t){document.documentElement.setAttribute('data-theme',t);}})();</script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-top">
+        <h1 class="site-title">./</h1>
+        <button id="theme-toggle" class="theme-btn" type="button" aria-label="toggle theme">theme</button>
+      </div>
+    </header>
+
+    <nav class="quick-nav">
+  <a href="./discrete/index.html">discrete</a> / <a href="./dld/index.html">dld</a> / <a href="./ppl/index.html">ppl</a> / <a href="./dev-tools/index.html">dev tools</a> / <a href="./dsa/index.html">dsa</a> / <a href="./feedback-control-systems/index.html">feedback control systems</a>
+</nav>
+
+    <div class="notice-box">
+      <p><strong>active deadline:</strong> dld assignments due 23 november 2026 (to be done on a separate notebook)</p>
+    </div>
+
+    <div class="filter-box">
+      <input type="text" id="tree-filter" class="filter-input" placeholder="filter subjects (discrete, dld, ppl, dev tools, dsa, feedback control systems)..." autocomplete="off">
+    </div>
+
+    <main>
+      <section class="tree-view">
+        <span class="tree-root-label">./</span>
+        <ul class="tree-list">
+          <!-- discrete -->
+          <li class="tree-node tree-node-subject">
+            <div class="tree-branch">
+              <span class="tree-symbol">├──</span>
+              <a class="tree-link" href="discrete/index.html">discrete/</a>
+            </div>
+            <ul class="tree-children">
+              <li class="tree-node">
+                <div class="tree-branch">
+                  <span class="tree-symbol">└──</span>
+                  <a class="tree-link" href="discrete/assignments/index.html">assignments/</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+
+          <!-- dld -->
+          <li class="tree-node tree-node-subject">
+            <div class="tree-branch">
+              <span class="tree-symbol">├──</span>
+              <a class="tree-link" href="dld/index.html">dld/</a>
+            </div>
+            <ul class="tree-children">
+              <li class="tree-node">
+                <div class="tree-branch">
+                  <span class="tree-symbol">├──</span>
+                  <a class="tree-link" href="dld/assignments/index.html">assignments/</a>
+                </div>
+              </li>
+              <li class="tree-node">
+                <div class="tree-branch">
+                  <span class="tree-symbol">└──</span>
+                  <a class="tree-link" href="dld/practical-lab-record/index.html">practical lab record/</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+
+          <!-- ppl -->
+          <li class="tree-node tree-node-subject">
+            <div class="tree-branch">
+              <span class="tree-symbol">├──</span>
+              <a class="tree-link" href="ppl/index.html">ppl/</a>
+            </div>
+            <ul class="tree-children">
+              <li class="tree-node">
+                <div class="tree-branch">
+                  <span class="tree-symbol">├──</span>
+                  <a class="tree-link" href="ppl/assignments/index.html">assignments/</a>
+                </div>
+              </li>
+              <li class="tree-node">
+                <div class="tree-branch">
+                  <span class="tree-symbol">└──</span>
+                  <a class="tree-link" href="ppl/practical-lab-record/index.html">practical lab record/</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+
+          <!-- dev tools -->
+          <li class="tree-node tree-node-subject">
+            <div class="tree-branch">
+              <span class="tree-symbol">├──</span>
+              <a class="tree-link" href="dev-tools/index.html">dev tools/</a>
+            </div>
+            <ul class="tree-children">
+              <li class="tree-node">
+                <div class="tree-branch">
+                  <span class="tree-symbol">├──</span>
+                  <a class="tree-link" href="dev-tools/assignments/index.html">assignments/</a>
+                </div>
+              </li>
+              <li class="tree-node">
+                <div class="tree-branch">
+                  <span class="tree-symbol">└──</span>
+                  <a class="tree-link" href="dev-tools/practical-lab-record/index.html">practical lab record/</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+
+          <!-- dsa -->
+          <li class="tree-node tree-node-subject">
+            <div class="tree-branch">
+              <span class="tree-symbol">├──</span>
+              <a class="tree-link" href="dsa/index.html">dsa/</a>
+            </div>
+            <ul class="tree-children">
+              <li class="tree-node">
+                <div class="tree-branch">
+                  <span class="tree-symbol">├──</span>
+                  <a class="tree-link" href="dsa/assignments/index.html">assignments/</a>
+                </div>
+              </li>
+              <li class="tree-node">
+                <div class="tree-branch">
+                  <span class="tree-symbol">└──</span>
+                  <a class="tree-link" href="dsa/practical-lab-record/index.html">practical lab record/</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+
+          <!-- feedback control systems -->
+          <li class="tree-node tree-node-subject">
+            <div class="tree-branch">
+              <span class="tree-symbol">└──</span>
+              <a class="tree-link" href="feedback-control-systems/index.html">feedback control systems/</a>
+            </div>
+            <ul class="tree-children">
+              <li class="tree-node">
+                <div class="tree-branch">
+                  <span class="tree-symbol">└──</span>
+                  <a class="tree-link" href="feedback-control-systems/assignments/index.html">assignments/</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
